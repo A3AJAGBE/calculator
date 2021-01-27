@@ -29,29 +29,37 @@ operations = {
     "/": divide,
 }
 
-# Default displays
-print(logo)
-print('Operations Symbol:\nAddition is +\nSubstraction is -\nMultiplication is *\nDivision is /\n')
 
-# The calculator process
-num1 = float(input("What is the first number? "))
+# Calculation recursion
+def calculator():
+    # Default displays
+    print(logo)
+    print('Operations Symbol:\nAddition is +\nSubtraction is -\nMultiplication is *\nDivision is /\n')
 
-continue_calc = True
-while continue_calc:
-    calc_operation = input("What operation do you want to perform? ")
-    num2 = float(input("What is the next number? "))
+    # The calculator process
+    num1 = float(input("What is the first number? "))
 
-    if calc_operation not in operations:
-        print("\nInvalid calculation operation.")
-    else:
-        chosen_operation = operations[calc_operation]
-        result = chosen_operation(num1, num2)
-        print(f"\n{num1} {calc_operation} {num2} = {result}")
-        new_calc = input(f'Type "Yes" to further your calculation with {result}, else type "No" to exit\n').lower()
+    continue_calc = True
+    while continue_calc:
+        calc_operation = input("What operation do you want to perform? ")
+        num2 = float(input("What is the next number? "))
 
-        if new_calc == "yes":
-            num1 = result
-        elif new_calc == "no":
-            continue_calc = False
+        if calc_operation not in operations:
+            print("\nInvalid calculation operation, start again.")
+            calculator()
         else:
-            print("Invalid response, start again")
+            chosen_operation = operations[calc_operation]
+            result = chosen_operation(num1, num2)
+            print(f"\n{num1} {calc_operation} {num2} = {result}")
+            new_calc = input(f'Type "Yes" to further your calculation with {result}, else type "No" to exit\n').lower()
+
+            if new_calc == "yes":
+                num1 = result
+            elif new_calc == "no":
+                continue_calc = False
+            else:
+                print("Invalid response, start again.")
+                calculator()
+
+
+calculator()
