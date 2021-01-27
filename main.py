@@ -1,6 +1,8 @@
 """This is a basic calculator."""
 
 # Imports
+import os
+
 from art import logo
 
 
@@ -30,6 +32,12 @@ operations = {
 }
 
 
+# clear function
+def clear():
+    """This functions clears the console"""
+    return os.system('clear')
+
+
 # Calculation recursion
 def calculator():
     # Default displays
@@ -45,6 +53,7 @@ def calculator():
         num2 = float(input("What is the next number? "))
 
         if calc_operation not in operations:
+            clear()
             print("\nInvalid calculation operation, start again.")
             calculator()
         else:
@@ -57,7 +66,9 @@ def calculator():
                 num1 = result
             elif new_calc == "no":
                 continue_calc = False
+                print(f"\nFinal calculation result is: {result}")
             else:
+                clear()
                 print("Invalid response, start again.")
                 calculator()
 
