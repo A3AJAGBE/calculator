@@ -35,12 +35,23 @@ print('Operations Symbol:\nAddition is +\nSubstraction is -\nMultiplication is *
 
 # The calculator process
 num1 = float(input("What is the first number? "))
-calc_operation = input("What operation do you want to perform? ")
-num2 = float(input("What is the second number? "))
 
-if calc_operation not in operations:
-    print("\nInvalid calculation operation.")
-else:
-    chosen_operation = operations[calc_operation]
-    result = chosen_operation(num1, num2)
-    print(f"\n{num1} {calc_operation} {num2} = {result}")
+continue_calc = True
+while continue_calc:
+    calc_operation = input("What operation do you want to perform? ")
+    num2 = float(input("What is the next number? "))
+
+    if calc_operation not in operations:
+        print("\nInvalid calculation operation.")
+    else:
+        chosen_operation = operations[calc_operation]
+        result = chosen_operation(num1, num2)
+        print(f"\n{num1} {calc_operation} {num2} = {result}")
+        new_calc = input(f'Type "Yes" to further your calculation with {result}, else type "No" to exit\n').lower()
+
+        if new_calc == "yes":
+            num1 = result
+        elif new_calc == "no":
+            continue_calc = False
+        else:
+            print("Invalid response, start again")
